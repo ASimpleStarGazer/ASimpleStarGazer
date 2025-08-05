@@ -1,9 +1,9 @@
 # ASimpleStarGazer
 🧠 1. Overall Architecture Diagram  
 Architecture diagram explanation:
-
+![image](https://github.com/Ruixiaoke/ASimpleStarGazer/blob/main/Assects/en_architecture.png)
 📊 2. Main App Workflow (Including AI Agent)
-
+![image](https://github.com/Ruixiaoke/ASimpleStarGazer/blob/main/Assects/en_ai_agent_flow.png)
 3. Module Specifications  
 ✅ MCP Server  
 Implemented in: Java, Node.js, Python  
@@ -43,9 +43,9 @@ Each Server encapsulates the following tools (with unified APIs):
 1. Local Deployment  
 Managed by Docker Compose:  
 auth_server, mcp_server, mcp_client, main_app, mysql, faiss_server  
-Ideal for development/debugging  
+Ideal for development/debugging
 
-2. Cloud Deployment (Recommended AWS/GCP)  
+3. Cloud Deployment (Recommended AWS/GCP)  
 - MCP Server deployment options:  
   Lambda/EC2/App Engine for multi-language microservices  
 - Auth Server:  
