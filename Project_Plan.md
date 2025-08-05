@@ -2,8 +2,12 @@
 🧠 1. Overall Architecture Diagram  
 Architecture diagram explanation:
 ![image](https://github.com/Ruixiaoke/ASimpleStarGazer/blob/main/Assects/en_architecture.png)
+
+
 📊 2. Main App Workflow (Including AI Agent)
 ![image](https://github.com/Ruixiaoke/ASimpleStarGazer/blob/main/Assects/en_ai_agent_flow.png)
+
+
 3. Module Specifications  
 ✅ MCP Server  
 Implemented in: Java, Node.js, Python  
