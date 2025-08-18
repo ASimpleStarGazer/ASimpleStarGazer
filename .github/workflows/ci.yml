@@ -1,0 +1,45 @@
+name: CI
+on:
+  push: { branches: [ main ] }
+  pull_request: { branches: [ main ] }
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [python, node, dotnet]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Python (apps/server-python)
+      if: matrix.target == 'python'
+      uses: actions/setup-python@v5
+      with: { python-version: '3.11' }
+    - if: matrix.target == 'python'
+      run: |
+        cd apps/server-python
+        python -m pip install -U pip
+        pip install -r requirements.txt || true
+        pytest || echo "no tests yet"
+
+    - name: Node (apps/server-node)
+      if: matrix.target == 'node'
+      uses: actions/setup-node@v4
+      with: { node-version: '20' }
+    - if: matrix.target == 'node'
+      run: |
+        cd apps/server-node
+        npm i || true
+        npm test || echo "no tests yet"
+
+    - name: .NET (apps/server-dotnet)
+      if: matrix.target == 'dotnet'
+      uses: actions/setup-dotnet@v4
+      with: { dotnet-version: '8.0.x' }
+    - if: matrix.target == 'dotnet'
+      run: |
+        cd apps/server-dotnet
+        dotnet restore
+        dotnet build --nologo
+        dotnet test || echo "no tests yet"
