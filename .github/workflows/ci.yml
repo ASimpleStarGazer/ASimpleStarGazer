@@ -29,7 +29,7 @@ jobs:
       with: { node-version: '20' }
     - if: matrix.target == 'node'
       run: |
-        cd apps/server-node
+        cd apps/server-node/ASimpleStarGazer_nodejs
         npm i || true
         npm test || echo "no tests yet"
 
@@ -39,7 +39,7 @@ jobs:
       with: { dotnet-version: '8.0.x' }
     - if: matrix.target == 'dotnet'
       run: |
-        cd apps/server-dotnet
+        cd apps/server-dotnet/ASimpleStarGazer_dotNet
         dotnet restore
         dotnet build --nologo
         dotnet test || echo "no tests yet"

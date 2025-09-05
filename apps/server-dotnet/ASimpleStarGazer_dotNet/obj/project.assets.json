@@ -1640,24 +1640,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\52437\\.nuget\\packages\\": {}
+    "C:\\Users\\52437\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\AI_engineer_study\\ASimpleStarGazer\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
+      "projectUniqueName": "F:\\AI_engineer_study\\ASimpleStarGazer\\apps\\server-dotnet\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
       "projectName": "ASimpleStarGazer_dotNet",
-      "projectPath": "F:\\AI_engineer_study\\ASimpleStarGazer\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
+      "projectPath": "F:\\AI_engineer_study\\ASimpleStarGazer\\apps\\server-dotnet\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
       "packagesPath": "C:\\Users\\52437\\.nuget\\packages\\",
-      "outputPath": "F:\\AI_engineer_study\\ASimpleStarGazer\\ASimpleStarGazer_dotNet\\obj\\",
+      "outputPath": "F:\\AI_engineer_study\\ASimpleStarGazer\\apps\\server-dotnet\\ASimpleStarGazer_dotNet\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\52437\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\52437\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1707,7 +1714,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASimpleStarGazer_dotNet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26d152f398d9acbff1590624527aeadd28d5139c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0a8bfd893b011afcc22e49a90ad950b75fb641c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASimpleStarGazer_dotNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASimpleStarGazer_dotNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

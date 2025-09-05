@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LCC8zKRk5pA=",
+  "dgSpecHash": "bFe4E0VCFy0=",
   "success": true,
-  "projectFilePath": "F:\\AI_engineer_study\\ASimpleStarGazer\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
+  "projectFilePath": "F:\\AI_engineer_study\\ASimpleStarGazer\\apps\\server-dotnet\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\52437\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\9.7.1\\microsoft.extensions.ai.abstractions.9.7.1.nupkg.sha512",
     "C:\\Users\\52437\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.7\\microsoft.extensions.configuration.9.0.7.nupkg.sha512",
