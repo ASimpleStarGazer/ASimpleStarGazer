@@ -8,7 +8,8 @@
     "asimplestargazer": "./build/index.js"
   },
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', 0o755)\""
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', 0o755)\"",
+    "test": "echo \"No tests yet\""
   },
   "files": ["build"],
   "keywords": [],

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LCC8zKRk5pA=",
+  "dgSpecHash": "s62h6o8uChA=",
   "success": true,
-  "projectFilePath": "F:\\AI_engineer_study\\ASimpleStarGazer\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
+  "projectFilePath": "F:\\AI_engineer_study\\ASimpleStarGazer\\apps\\server-dotnet\\ASimpleStarGazer_dotNet\\ASimpleStarGazer_dotNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\52437\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\9.7.1\\microsoft.extensions.ai.abstractions.9.7.1.nupkg.sha512",
     "C:\\Users\\52437\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.7\\microsoft.extensions.configuration.9.0.7.nupkg.sha512",
@@ -34,8 +34,12 @@
     "C:\\Users\\52437\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.7\\microsoft.extensions.primitives.9.0.7.nupkg.sha512",
     "C:\\Users\\52437\\.nuget\\packages\\modelcontextprotocol\\0.3.0-preview.3\\modelcontextprotocol.0.3.0-preview.3.nupkg.sha512",
     "C:\\Users\\52437\\.nuget\\packages\\modelcontextprotocol.core\\0.3.0-preview.3\\modelcontextprotocol.core.0.3.0-preview.3.nupkg.sha512",
+    "C:\\Users\\52437\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.7\\system.diagnostics.diagnosticsource.9.0.7.nupkg.sha512",
     "C:\\Users\\52437\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.7\\system.diagnostics.eventlog.9.0.7.nupkg.sha512",
-    "C:\\Users\\52437\\.nuget\\packages\\system.net.serversentevents\\10.0.0-preview.4.25258.110\\system.net.serversentevents.10.0.0-preview.4.25258.110.nupkg.sha512"
+    "C:\\Users\\52437\\.nuget\\packages\\system.io.pipelines\\9.0.7\\system.io.pipelines.9.0.7.nupkg.sha512",
+    "C:\\Users\\52437\\.nuget\\packages\\system.net.serversentevents\\10.0.0-preview.4.25258.110\\system.net.serversentevents.10.0.0-preview.4.25258.110.nupkg.sha512",
+    "C:\\Users\\52437\\.nuget\\packages\\system.text.encodings.web\\9.0.7\\system.text.encodings.web.9.0.7.nupkg.sha512",
+    "C:\\Users\\52437\\.nuget\\packages\\system.text.json\\9.0.7\\system.text.json.9.0.7.nupkg.sha512"
   ],
   "logs": []
 }
