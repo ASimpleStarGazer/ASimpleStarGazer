@@ -3,3 +3,5 @@
 
 
 npx @modelcontextprotocol/inspector
+
+run ASimpleStarGazer.py --active
