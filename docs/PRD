@@ -33,7 +33,7 @@
 - **星图展示**：交互式星空模拟  
 
 ### 3.3 多语言支持
-- MCP Server 多语言实现（Python/Node/Java）  
+- MCP Server 多语言实现（Python/Node/.NET）  
 - 自动识别用户输入语言并切换回答语言  
 
 ### 3.4 部署与扩展
@@ -45,7 +45,7 @@
 
 ## 4. 技术架构
 - **前端**：React + Tailwind，支持移动端自适应  
-- **后端**：FastAPI（Python） + Node.js/Java MCP Server  
+- **后端**：FastAPI（Python） + Node.js/.NET MCP Server  
 - **数据库**：MySQL（用户数据）、FAISS/ChromaDB（向量检索）  
 - **模型**：Ollama/DeepSeek Embedding + LLM (可替换 OpenAI/本地模型)  
 - **部署**：Docker + GitHub Actions CI/CD  
