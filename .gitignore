@@ -1,52 +1,11 @@
-# .NET
-bin/
-obj/
-*.user
-*.suo
-*.cache
-*.dll
-*.exe
-*.pdb
+# Common build artifacts
+**/bin/
+**/obj/
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm
-.yarn-integrity
+# Python venvs and caches
+**/.venv/
+**/__pycache__/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-*.egg-info/
-dist/
-build/
-.pytest_cache/
+# Node
+**/node_modules/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-logs/
-
-# Temporary files
-*.tmp
-*.temp
