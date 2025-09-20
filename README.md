@@ -29,7 +29,14 @@ dotnet ef database update \
 ## Build
 dotnet build apps/server-dotnet/ASimpleStarGazer_dotNet/ASimpleStarGazer_dotNet.csproj -c Debug
 
-# MCP UI
+## MCP UI
 npx @modelcontextprotocol/inspector
 dotnet
 run --no-build --project apps/server-dotnet/ASimpleStarGazer_dotNet/ASimpleStarGazer_dotNet.csproj --method tools/list
+
+# Copyright (C) 2025 [Your Name or Organization]
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
