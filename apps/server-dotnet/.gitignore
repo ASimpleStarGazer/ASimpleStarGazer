@@ -4,7 +4,7 @@ obj/
 out/
 
 # Sensitive API Token
-launchSettings.json
+# launchSettings.json
 
 # Build results
 [Dd]ebug/
