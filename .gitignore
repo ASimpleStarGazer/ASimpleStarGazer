@@ -1,0 +1,11 @@
+# Common build artifacts
+**/bin/
+**/obj/
+
+# Python venvs and caches
+**/.venv/
+**/__pycache__/
+
+# Node
+**/node_modules/
+

@@ -6,6 +6,8 @@ import httpx
 import dotenv
 from mcp.server.fastmcp import FastMCP
 from models.weather_model import Weather_model
+import redis.asyncio as redis
+import aiomysql
 
 dotenv.load_dotenv()
 # ASimpleStarGazer.py
@@ -14,6 +16,30 @@ Meteosource_API_Base = "https://www.meteosource.com/api/v1/free/point"
 
 # get moon phase
 AstronomyAPI_key = os.environ.get("AstronomyAPI_key")
+
+# Redis/MySQL shared clients
+redis_client: redis.Redis | None = None
+mysql_pool: aiomysql.Pool | None = None
+
+async def init_connections():
+    """Initialize Redis client and MySQL pool if not already created."""
+    global redis_client, mysql_pool
+    if redis_client is None:
+        redis_url = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+        redis_client = redis.from_url(redis_url, decode_responses=True)
+        # simple ping to validate connection
+        await redis_client.ping()
+    if mysql_pool is None:
+        mysql_pool = await aiomysql.create_pool(
+            host=os.environ.get("MYSQL_HOST", "localhost"),
+            port=int(os.environ.get("MYSQL_PORT", "3306")),
+            db=os.environ.get("MYSQL_DB", "stargazer"),
+            user=os.environ.get("MYSQL_USER", "sg"),
+            password=os.environ.get("MYSQL_PASSWORD", "sgpass"),
+            minsize=1,
+            maxsize=5,
+            autocommit=True,
+        )
 
 async def get_moon_phase(lat: str, lon: str, date: str) -> str | dict:
     """Get moon phase data from AstronomyAPI with comprehensive error handling."""
@@ -190,6 +216,30 @@ async def get_moon_phase_tool(lat: str, lon: str, date: str) -> str:
     except Exception as e:
         return json.dumps({"error": f"Unexpected error in get_moon_phase_tool: {str(e)}"})
 
+@mcp.tool("cache_set")
+async def cache_set(key: str, value: str, ttl_seconds: int = 300) -> str:
+    """Set a value into Redis with optional TTL."""
+    try:
+        await init_connections()
+        assert redis_client is not None
+        await redis_client.set(key, value, ex=ttl_seconds)
+        return json.dumps({"ok": True})
+    except Exception as e:
+        return json.dumps({"error": f"cache_set failed: {str(e)}"})
+
+@mcp.tool("db_ping")
+async def db_ping() -> str:
+    """Ping MySQL by running SELECT 1."""
+    try:
+        await init_connections()
+        assert mysql_pool is not None
+        async with mysql_pool.acquire() as conn:
+            async with conn.cursor() as cur:
+                await cur.execute("SELECT 1")
+                row = await cur.fetchone()
+        return json.dumps({"result": row[0] == 1})
+    except Exception as e:
+        return json.dumps({"error": f"db_ping failed: {str(e)}"})
 
 
 
