@@ -4,7 +4,10 @@ obj/
 out/
 
 # Sensitive API Token
-# launchSettings.json
+
+# Local dev settings
+# Ignore per-project launch profiles (local machine specific)
+**/Properties/launchSettings.json
 
 # Build results
 [Dd]ebug/
