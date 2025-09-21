@@ -1,6 +1,6 @@
 .\.venv\Scripts\activate 
 
-
+test
 
 npx @modelcontextprotocol/inspector
 
