@@ -67,3 +67,6 @@ python ASimpleStarGazer.py
 ## 常见问题
 - 不能连接 Redis/MySQL：检查 `.env` 与服务是否已启动、端口映射是否正确。
 - Windows 下端口占用：重启 docker 或修改端口映射。
+
+
+test
