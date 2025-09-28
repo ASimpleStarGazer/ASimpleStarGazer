@@ -1,0 +1,26 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(110, 74, 255, 0.18), transparent 60%),
+      radial-gradient(circle at 75% 15%, rgba(255, 214, 107, 0.15), transparent 55%),
+      radial-gradient(circle at 50% 90%, rgba(11, 30, 61, 0.75), transparent 65%);
+    background-attachment: fixed;
+  }
+
+  * {
+    @apply scroll-smooth;
+  }
+
+  ::selection {
+    @apply bg-secondary text-secondary-foreground;
+  }
+}
