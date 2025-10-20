@@ -1,0 +1,214 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Build and push Docker images
+  build-images:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [python-mcp, dotnet-mcp, node-mcp, frontend]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.service }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-
+
+      - name: Build and push Python MCP Docker image
+        if: matrix.service == 'python-mcp'
+        uses: docker/build-push-action@v5
+        with:
+          context: MCP_servers/ASimpleStargGazer_python
+          file: MCP_servers/ASimpleStargGazer_python/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push .NET MCP Docker image
+        if: matrix.service == 'dotnet-mcp'
+        uses: docker/build-push-action@v5
+        with:
+          context: MCP_servers/ASimpleStargGazer_dotnet
+          dockerfile: |
+            FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+            WORKDIR /app
+            EXPOSE 80
+            
+            FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+            WORKDIR /src
+            COPY ["ASimpleStarGazer_dotNet/ASimpleStarGazer_dotNet.csproj", "ASimpleStarGazer_dotNet/"]
+            COPY ["ASimpleStarGazer.Model/ASimpleStarGazer.Model.csproj", "ASimpleStarGazer.Model/"]
+            RUN dotnet restore "ASimpleStarGazer_dotNet/ASimpleStarGazer_dotNet.csproj"
+            COPY . .
+            WORKDIR "/src/ASimpleStarGazer_dotNet"
+            RUN dotnet build "ASimpleStarGazer_dotNet.csproj" -c Release -o /app/build
+            
+            FROM build AS publish
+            RUN dotnet publish "ASimpleStarGazer_dotNet.csproj" -c Release -o /app/publish
+            
+            FROM base AS final
+            WORKDIR /app
+            COPY --from=publish /app/publish .
+            ENTRYPOINT ["dotnet", "ASimpleStarGazer_dotNet.dll"]
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push Node.js MCP Docker image
+        if: matrix.service == 'node-mcp'
+        uses: docker/build-push-action@v5
+        with:
+          context: MCP_servers/ASimpleStargGazer_node
+          dockerfile: |
+            FROM node:20-alpine AS builder
+            WORKDIR /app
+            COPY package*.json ./
+            RUN npm ci --only=production
+            COPY . .
+            RUN npm run build
+            
+            FROM node:20-alpine AS runtime
+            WORKDIR /app
+            RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
+            COPY --from=builder --chown=nextjs:nodejs /app/build ./build
+            COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+            COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+            USER nextjs
+            EXPOSE 3000
+            CMD ["node", "build/index.js"]
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push Frontend Docker image
+        if: matrix.service == 'frontend'
+        uses: docker/build-push-action@v5
+        with:
+          context: ASimpleStargGazer_frontend
+          dockerfile: |
+            FROM node:20-alpine AS builder
+            WORKDIR /app
+            COPY package*.json ./
+            RUN npm ci
+            COPY . .
+            RUN npm run build
+            
+            FROM nginx:alpine AS runtime
+            COPY --from=builder /app/dist /usr/share/nginx/html
+            COPY nginx.conf /etc/nginx/nginx.conf
+            EXPOSE 80
+            CMD ["nginx", "-g", "daemon off;"]
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # Deploy to staging
+  deploy-staging:
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+    needs: build-images
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Deploy to staging
+        run: |
+          echo "Deploying to staging environment..."
+          # Add your staging deployment logic here
+          # This could include:
+          # - Updating Kubernetes manifests
+          # - Deploying to cloud platforms (AWS, GCP, Azure)
+          # - Running Terraform/Helm commands
+          # - Notifying deployment services
+
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests on staging..."
+          # Add smoke test logic here
+
+  # Deploy to production
+  deploy-production:
+    if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
+    needs: build-images
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production environment..."
+          # Add your production deployment logic here
+
+      - name: Run smoke tests
+        run: |
+          echo "Running smoke tests on production..."
+          # Add smoke test logic here
+
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
