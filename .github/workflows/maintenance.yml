@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SUBMODULES_PAT }}
 
       - name: Setup Python
         if: matrix.component == 'python'
@@ -121,6 +121,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.SUBMODULES_PAT }}
 
       - name: Check markdown links
         uses: gaurav-nelson/github-action-markdown-link-check@v1
@@ -150,6 +151,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          token: ${{ secrets.SUBMODULES_PAT }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -201,6 +203,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+          token: ${{ secrets.SUBMODULES_PAT }}
 
       - name: Generate project metrics
         run: |
