@@ -1,3 +1,18 @@
 [submodule "ASimpleStarGazerWEB"]
 	path = ASimpleStarGazerWEB
 	url = https://github.com/Ruixiaoke/ASimpleStarGazerWEB.git
+[submodule "AsimpleStargazer_Frontend"]
+	path = AsimpleStargazer_Frontend
+	url = https://github.com/Ruixiaoke/AsimpleStargazer_Frontend
+[submodule "ASimpleStargGazer_Infra"]
+	path = ASimpleStargGazer_Infra
+	url = https://github.com/Ruixiaoke/ASimpleStargGazer_Infra
+[submodule "MCP_servers/ASimpleStargGazer_dotnet"]
+	path = MCP_servers/ASimpleStargGazer_dotnet
+	url = https://github.com/Ruixiaoke/ASimpleStargGazer_dotnet
+[submodule "MCP_servers/ASimpleStargGazer_node"]
+	path = MCP_servers/ASimpleStargGazer_node
+	url = https://github.com/Ruixiaoke/ASimpleStargGazer_node
+[submodule "MCP_servers/ASimpleStargGazer_python"]
+	path = MCP_servers/ASimpleStargGazer_python
+	url = https://github.com/Ruixiaoke/ASimpleStargGazer_python
