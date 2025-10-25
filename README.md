@@ -23,7 +23,7 @@ This project uses a microservices architecture with Git Submodules to manage mul
 
 ### 1. Clone the project (including submodules)
 ```powershell
-git clone --recursive https://github.com/Ruixiaoke/ASimpleStargGazer.git
+git clone --recursive https://github.com/Ruixiaoke/ASimpleStarGazer.git
 cd ASimpleStarGazer
 ```
 
