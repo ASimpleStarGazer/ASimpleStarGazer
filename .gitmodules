@@ -16,3 +16,7 @@
 [submodule "MCP_servers/ASimpleStargGazer_python"]
 	path = MCP_servers/ASimpleStargGazer_python
 	url = https://github.com/Ruixiaoke/ASimpleStargGazer_python
+[submodule "AsimpleStargazer_Backend"]
+	path = AsimpleStargazer_Backend
+	url = https://github.com/ASimpleStarGazer/AsimpleStargazer_Backend.git
+

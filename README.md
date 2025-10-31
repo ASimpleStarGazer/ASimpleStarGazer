@@ -23,7 +23,7 @@ This project uses a microservices architecture with Git Submodules to manage mul
 
 ### 1. Clone the project (including submodules)
 ```powershell
-git clone --recursive https://github.com/Ruixiaoke/ASimpleStarGazer.git
+git clone --recursive https://github.com/Ruixiaoke/ASimpleStargGazer.git
 cd ASimpleStarGazer
 ```
 
@@ -217,4 +217,3 @@ This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-111
